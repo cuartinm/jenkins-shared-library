@@ -6,7 +6,7 @@ def call(Map stageParams) {
     try {
       def httpConn = new URL(stageParams.statuses_url).openConnection();
       httpConn.setRequestMethod("POST");
-      httpConn.setRequestProperty("Authorization", "token ${stageParams.GITHUB_ACCESS_TOKEN}")
+      httpConn.setRequestProperty("Authorization", "token ${stageParams.github_access_token}")
       httpConn.setRequestProperty("Accept", "application/vnd.github.v3+json")
       httpConn.setRequestProperty("Accept", "application/json");
       httpConn.setDoOutput(true);
