@@ -14,5 +14,6 @@ def call(Map stageParams) {
       return httpConn.getResponseCode();
     } catch(Exception e){
       echo "Exception: ${e}"
+      currentBuild.result = 'FAILURE'
     }  
 }
