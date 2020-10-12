@@ -5,7 +5,7 @@ def call(Map params) {
     sh(
       script: """
         curl -u ${params.username}:${params.password} \
-        -X PUT "${params.artifactory_url}/${params.repository}/${params.application}/${params.version}/${params.artifact}" \
+        -X PUT -k "${params.artifactory_url}/${params.repository}/${params.application}/${params.version}/${params.artifact}" \
         -T ${params.artifact}
       """
     )
