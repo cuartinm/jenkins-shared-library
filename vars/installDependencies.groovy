@@ -5,7 +5,7 @@ def call(Map params) {
     try {
       if (params.manager == "npm") {
         configFileProvider([configFile(fileId: '17d3db00-8ec7-4598-8b81-b5a4e25a0d2f', variable: 'npm_config_registry')]) {
-          sh(script: "npm i .", returnStatus: true)
+          sh(script: "mv ${npm_config_registry} .npmrc && npm i .", returnStatus: true)
         }
       }
     } catch(Exception e) {
