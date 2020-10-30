@@ -13,7 +13,9 @@ def call(Map params) {
     // Analyze the project code and produce the results file
     sh "sourceanalyzer -b ${params.buildId} -scan -f results.fpr"
 
+    sh "FPRUtility -information -analyzerIssueCounts -project results.fpr"
+    sh "FPRUtility -categoryIssueCounts -listIssues -information -search -query '[fortify priority order]:critical OR ([fortify priority order]:high AND ([analyzer]:structural OR [analyzer]:data flow OR [analyzer]:content OR [analyzer]:semantic))' -project results.fpr"
     // securely transfer objects to and from Fortify Software Security Center
-    sh "fortifyclient -url ${params.sscurl} -authtoken ${params.ssctoken} uploadFPR -f results.fpr -project ${sscproject} -version ${sscversion}"
+    // sh "fortifyclient -url ${params.sscurl} -authtoken ${params.ssctoken} uploadFPR -f results.fpr -project ${sscproject} -version ${sscversion}"
   }
 }
