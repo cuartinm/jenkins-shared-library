@@ -7,7 +7,6 @@ def call(Map params) {
   def httpConn = new URL(params.url).openConnection();
   httpConn.setRequestMethod("POST");
   httpConn.setRequestProperty("Authorization", "Basic ${params.credentials}")
-  httpConn.setRequestProperty("Accept", "application/vnd.github.v3+json")
   httpConn.setRequestProperty("Accept", "application/json");
   httpConn.setDoOutput(true);
   httpConn.getOutputStream().write(builder.toString().getBytes("UTF-8"));
